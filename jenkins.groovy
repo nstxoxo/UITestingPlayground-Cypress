@@ -43,7 +43,7 @@ node {
 //            stage("Allure") {
 //                generateAllure()
 //            }
-//        }
+       }
     }
 }
 
