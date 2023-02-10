@@ -20,7 +20,8 @@ node {
         }
 
         try {
-            runTest()
+            stage("Run tests") {
+                runTest()
         } finally {
             stage ("Allure") {
                 generateAllure()
