@@ -17,13 +17,50 @@ node {
             } else {
                 echo "Current branch is main"
             }
+        }
+
+        try {
+            runTest()
+        } finally {
+            stage ("Allure") {
+                generateAllure()
             }
         }
+
+//        try {
+//            stage("Run tests") {
+//                parallel(
+//                        'Api Tests': {
+//                            runTestWithTag("apiTests")
+//                        },
+//                        'Ui Tests': {
+//                            runTestWithTag("uiTests")
+//                        }
+//                )
+//            }
+//        } finally {
+//            stage("Allure") {
+//                generateAllure()
+//            }
+//        }
+    }
 }
 
-def runTestWith() {
+
+// def getTestStages(testTags) {
+//     def stages = [:]
+//     testTags.each { tag ->
+//         stages["${tag}"] = {
+//             runTestWithTag(tag)
+//         }
+//     }
+//     return stages
+// }
+
+
+def runTest() {
     try {
-        labelledShell(script: "npx cypress run --env allure=true")
+        script: "npx cypress run --env allure=true"
     } finally {
         echo "some failed tests"
     }
