@@ -21,51 +21,24 @@ node {
 
         try {
             stage("Run tests") {
-                runTest()
+                script "npx cypress run --env allure=true"
         } finally {
             stage ("Allure") {
                 generateAllure()
             }
         }
-
-//        try {
-//            stage("Run tests") {
-//                parallel(
-//                        'Api Tests': {
-//                            runTestWithTag("apiTests")
-//                        },
-//                        'Ui Tests': {
-//                            runTestWithTag("uiTests")
-//                        }
-//                )
-//            }
-//        } finally {
-//            stage("Allure") {
-//                generateAllure()
-//            }
        }
     }
 }
 
 
-// def getTestStages(testTags) {
-//     def stages = [:]
-//     testTags.each { tag ->
-//         stages["${tag}"] = {
-//             runTestWithTag(tag)
-//         }
+// def runTest() {
+//     try {
+//         script "npx cypress run --env allure=true"
+//     } finally {
+//         echo "some failed tests"
 //     }
-//     return stages
 // }
-
-
-def runTest() {
-    try {
-        script: "npx cypress run --env allure=true"
-    } finally {
-        echo "some failed tests"
-    }
-}
 
 def getProject(String repo, String branch) {
     cleanWs()
