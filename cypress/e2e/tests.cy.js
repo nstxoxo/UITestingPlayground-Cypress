@@ -42,7 +42,7 @@ describe("UI Test Automation", () => {
         .should('contain', 'Welcome UserName!')
     })
 
-    it('Sample App', () => { 
+    it('Sample App', () => {
         cy.contains('Sample App').click()
         cy.get('[name="UserName"]').type('UserName')
         cy.get('[name="Password"]').type('pwd')
