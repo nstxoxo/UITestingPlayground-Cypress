@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     stages {
         stage('Build') {
             steps {
@@ -8,7 +9,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing..',
+                echo 'Testing..'
             }
         }
         stage('Allure report') {
@@ -19,10 +20,10 @@ pipeline {
                     jdk: '',
                     properties: [],
                     reportBuildPolicy: 'ALWAYS',
-                    results: [[path: 'target/allure-results']]
-            ])
+                    results: [[path: 'allure-results']]
+    ]) 
     }
-    }
-}
+            }
+            }
     }
 }
