@@ -4,12 +4,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh 'npm i'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                sh 'npm run cypress:run'
+
             }
         }
         stage('Allure report') {
