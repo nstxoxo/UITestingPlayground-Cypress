@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
         stage('Build') {
             steps {
@@ -14,15 +13,17 @@ pipeline {
             }
         }
         stage('Allure report') {
-            script {
-            allure([
+            steps {
+                script {
+                    allure([
                     includeProperties: false,
                     jdk: '',
                     properties: [],
                     reportBuildPolicy: 'ALWAYS',
                     results: [[path: 'target/allure-results']]
             ])
-        }
     }
+    }
+}
     }
 }
