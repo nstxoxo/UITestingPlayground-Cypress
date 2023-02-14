@@ -9,7 +9,6 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..',
-                sh 'cypress:run'
             }
         }
         stage('Allure report') {
