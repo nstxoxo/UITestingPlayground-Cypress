@@ -1,16 +1,12 @@
 pipeline {
     agent any
-    // tools {nodejs "nodejs"}
+    tools {nodejs "nodejs"}
 
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
-                nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>') {
-                    sh 'npm config ls'
-                }
-                // sh 'npm config ls'
-                // sh 'npm i'
+                sh 'npm config ls'
+                sh 'npm i'
                 sh 'npm install lambdatest-cypress-cli'
             }
         }
