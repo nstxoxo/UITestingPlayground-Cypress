@@ -1,6 +1,6 @@
 pipeline {
     
-    agent any
+    node any
 
     stages {
        stage('Dependencies') {
