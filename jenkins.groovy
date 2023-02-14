@@ -1,19 +1,22 @@
 pipeline {
+    
     agent any
 
-    stages {
-        stage('Build') {
-            steps {
-                sh 'npm i'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'npm run cypress:run'
+    tools {nodejs "Node12"}
 
-            }
-        }
-        stage('Allure report') {
+    stages {
+       stage('Dependencies') {
+           steps {
+               sh 'npm i'
+               sh 'npm install lambdatest-cypress-cli'
+           }
+       }
+       stage('e2e Tests') {
+           steps {
+               sh 'npm run cypress:run'
+           }
+       }
+       stage('Allure report') {
             steps {
                 script {
                     allure([
@@ -25,6 +28,6 @@ pipeline {
     ]) 
     }
             }
-            }
+       }
     }
 }
